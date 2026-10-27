@@ -105,6 +105,7 @@ public class TasksController : ControllerBase
         // Update only the fields this endpoint allows
         task.Title = title;
         task.Description = request.Description?.Trim();
+        task.UpdatedAt = DateTime.UtcNow;
 
         await _context.SaveChangesAsync();
 
@@ -152,6 +153,8 @@ public class TasksController : ControllerBase
 
         // Update only the completion status
         task.IsCompleted = request.IsCompleted;
+
+        task.UpdatedAt = DateTime.UtcNow;
 
         await _context.SaveChangesAsync();
 

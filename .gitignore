@@ -71,6 +71,11 @@ artifacts/
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
 
+# SQLite database files
+*.db
+*.db-shm
+*.db-wal
+
 # StyleCop
 StyleCopReport.xml
 
