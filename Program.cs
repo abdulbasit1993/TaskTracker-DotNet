@@ -7,6 +7,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+// Allow requests from any source
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy => 
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddDbContext<TaskTrackerDbContext>(options =>
 options.UseSqlite(
     builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -25,6 +36,8 @@ var app = builder.Build();
 app.MapOpenApi();
 
 app.UseHttpsRedirection();
+
+app.UseCors();
 
 app.UseAuthorization();
 
